@@ -1,3 +1,5 @@
+require 'pry'
+
 module Yardstick
-  require "lib/yardstick/railtie" if defined?(Rails)
+  require "yardstick/railtie" if defined?(Rails)
 end
