@@ -1,22 +1,22 @@
 require 'yardstick/css_asset'
 
 module Yardstick
-
   PRECOMPRESS_ROOT = 'tmp/yardstick/css'
 
   class Css
 
+    attr_accessor :measurements
+
     def initialize(targets)
       @targets = targets
-      # precompile
+      precompile
       measure
     end
 
+    private
+
     def measure
-      @measurements = @targets.map {|t| Yardstick::CssAsset.new t}
-      @measurements.each do |measurement|
-        puts measurement.data
-      end
+      @measurements = @targets.map {|t| Yardstick::CssAsset.new(t).data}
     end
 
     def precompile

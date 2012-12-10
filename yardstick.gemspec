@@ -13,8 +13,9 @@ Gem::Specification.new do |s|
   s.add_dependency('css_parser')
   s.add_dependency('librato-metrics')
   s.add_dependency('yajl-ruby')
+  s.add_dependency('chrome_debugger')
 
-  s.files             = Dir.glob("{examples,lib}/**/*") + ["README.md", "CHANGELOG"]
+  s.files = Dir.glob("{lib}/**/*") + ["README.md", "CHANGELOG"]
   s.required_rubygems_version = ">=1.3.2"
   s.required_ruby_version = ">=1.9.2"
 end
