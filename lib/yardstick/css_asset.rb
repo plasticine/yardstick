@@ -11,7 +11,7 @@ module Yardstick
       @file_path = File.join(Rails.root, Yardstick::PRECOMPRESS_ROOT, @file)
       @parser = CssParser::Parser.new
       @parser.load_uri! @file_path
-      @data = {selectors: 0, rules: 0, specificity: {}}
+      @data = {file: @file, selectors: 0, rules: 0, specificity: {}}
       file_stats
       rules
       selectors

@@ -16,7 +16,9 @@ module Yardstick
     private
 
     def measure
-      @measurements = @targets.map {|t| Yardstick::CssAsset.new(t).data}
+      @measurements = @targets.map do |target|
+        Yardstick::CssAsset.new(target).data
+      end
     end
 
     def precompile
