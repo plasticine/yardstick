@@ -1,5 +1,4 @@
 require 'yardstick/css'
-require 'yardstick/browser'
 require 'librato/metrics'
 require 'webmock/rspec'
 
