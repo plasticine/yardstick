@@ -1,6 +1,7 @@
 require 'yardstick/css'
 require 'yardstick/browser'
 require 'librato/metrics'
+require 'webmock/rspec'
 
 LIBRATO_PREFIX  = "tc.stats"
 LIBRATO_USER    = ENV["LIBRATO_USER"]
