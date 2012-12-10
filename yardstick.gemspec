@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "yardstick"
-  s.version           = "0.0.1"
+  s.version           = "0.0.2"
   s.summary           = "Measuring things is fun."
   s.description       = "A set of tools to help gather code statistics from your rails app."
   s.authors           = ["Justin Morris"]
