@@ -13,8 +13,8 @@ namespace :yardstick do
 
   desc "Gather CSS code quality statistics"
   task :css => ['assets:environment', 'tmp:cache:clear'] do
+    WebMock.disable!
     Yardstick::Css.new(['application.css', 'author.css']).measurements.each do |m|
-
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.selectors"           => m[:selectors])
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.rules"               => m[:rules])
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.bytes"               => m[:bytes])
@@ -28,5 +28,4 @@ namespace :yardstick do
 
   desc "WEOWOOEOWEOWOEOWOE"
   task :all => [:css]
-
 end
