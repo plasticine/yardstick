@@ -22,6 +22,7 @@ namespace :yardstick do
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.specificity.id"      => m[:specificity][:id])
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.specificity.class"   => m[:specificity][:class])
       librato_queue.add("#{LIBRATO_PREFIX}.css.#{m[:file]}.specificity.element" => m[:specificity][:element])
+      puts m
     end
     librato_queue.submit
   end
