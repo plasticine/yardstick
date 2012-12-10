@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "yardstick"
-  s.version           = "0.0.2"
+  s.version           = "0.0.3"
   s.summary           = "Measuring things is fun."
   s.description       = "A set of tools to help gather code statistics from your rails app."
   s.authors           = ["Justin Morris"]
@@ -9,11 +9,9 @@ Gem::Specification.new do |s|
   s.has_rdoc          = true
   s.rdoc_options      << "--title" << "Yardstick" << "--line-numbers"
 
-  s.add_dependency('pry')
   s.add_dependency('css_parser')
-  s.add_dependency('librato-metrics')
-  s.add_dependency('yajl-ruby')
   s.add_dependency('chrome_debugger')
+  s.add_dependency('librato-metrics')
 
   s.files = Dir.glob("{lib}/**/*") + ["README.md", "CHANGELOG"]
   s.required_rubygems_version = ">=1.3.2"
