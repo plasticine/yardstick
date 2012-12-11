@@ -1,4 +1,3 @@
-require 'yardstick/css'
 require 'librato/metrics'
 
 LIBRATO_PREFIX  = "aerobic.code"
@@ -25,6 +24,16 @@ namespace :yardstick do
     librato_queue.submit
   end
 
+  desc "Gather JS code quality statistics"
+  task :js => ['assets:environment', 'tmp:cache:clear'] do
+    Yardstick::Css.new(['application.js', 'vendor.js']).measurements.each do |m|
+      librato_queue.add("#{LIBRATO_PREFIX}.#{m[:file]}.bytes"               => m[:bytes])
+      librato_queue.add("#{LIBRATO_PREFIX}.#{m[:file]}.lines"               => m[:lines])
+      puts m
+    end
+    librato_queue.submit
+  end
+
   desc "Run all the stats gathering tasks"
-  task :all => [:css]
+  task :all => [:css, :js]
 end

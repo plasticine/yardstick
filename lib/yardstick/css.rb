@@ -1,44 +1,38 @@
-require 'yardstick/css_asset'
+require 'css_parser'
+require 'yardstick/measurement'
 
 module Yardstick
-  PRECOMPRESS_ROOT = 'tmp/yardstick/css'
+  class CSS < Yardstick::Measurement
+    include CssParser
 
-  class Css
-
-    attr_accessor :measurements
-
-    def initialize(targets)
-      @targets = targets
-      precompile
-      measure
+    def measure
+      @parser = CssParser::Parser.new
+      @parser.load_uri! @file_path
+      file_stats
+      rules
+      selectors
+      specificity
     end
 
     private
 
-    def measure
-      @measurements = @targets.map do |target|
-        Yardstick::CssAsset.new(target).data
+    def file_stats
+      @data[:bytes], @data[:lines] = *`wc -cl #{@file_path} | awk {'print $2" "$1'}`.split(' ')
+    end
+
+    def selectors
+      @parser.each_selector {@data[:selectors] += 1}
+    end
+
+    def rules
+      @parser.each_rule_set {@data[:rules] += 1}
+    end
+
+    def specificity
+      @parser.each_selector do |sel, dec, spec|
+        @data[:specificity].merge!(Hash[[:id, :class, :element].zip(
+          spec.to_s.rjust(3, '0').chars.to_a)]){|k,a,b| a.to_i + b.to_i}
       end
     end
-
-    def precompile
-      _ = ActionView::Base
-
-      config = Rails.application.config
-      config.assets.css_compressor = nil
-      config.assets.compress       = false
-      config.assets.debug          = true
-      config.assets.digest         = false
-      config.sass.style            = :expanded
-
-      Sprockets::StaticCompiler.new(
-        Rails.application.assets,
-        File.join(Rails.root, Yardstick::PRECOMPRESS_ROOT),
-        @targets,
-        :digest => config.assets.digest,
-        :manifest => false
-      ).compile
-    end
-
   end
 end

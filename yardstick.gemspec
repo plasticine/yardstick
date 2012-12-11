@@ -9,11 +9,10 @@ Gem::Specification.new do |s|
   s.has_rdoc          = true
   s.rdoc_options      << "--title" << "Yardstick" << "--line-numbers"
 
-  s.add_dependency('css_parser')
-  s.add_dependency('chrome_debugger')
-  s.add_dependency('librato-metrics')
+  s.add_dependency 'css_parser'
+  s.add_development_dependency 'rspec'
 
-  s.files = Dir.glob("{lib}/**/*") + ["README.md", "CHANGELOG"]
+  s.files = Dir.glob("{lib,spec}/**/*") + ["README.md", "CHANGELOG"]
   s.required_rubygems_version = ">=1.3.2"
   s.required_ruby_version = ">=1.9.2"
 end
