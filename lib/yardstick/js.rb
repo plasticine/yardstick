@@ -1,7 +1,7 @@
 require 'yardstick/measurement'
 
 module Yardstick
-  class JS < Yardstick::Measurement
+  class Js < Yardstick::Measurement
     def measure
       file_stats
     end

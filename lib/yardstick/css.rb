@@ -2,7 +2,7 @@ require 'css_parser'
 require 'yardstick/measurement'
 
 module Yardstick
-  class CSS < Yardstick::Measurement
+  class Css < Yardstick::Measurement
     include CssParser
 
     def measure
